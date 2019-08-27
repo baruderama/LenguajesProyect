@@ -11,11 +11,26 @@ public LogoParser(TokenStream input, Turtle turtle) {
 }
 
 }
+sentence:moveForward moveBack rotLeft rotRight setColor;
+moveForward:MOVE_FORW NUMB;
+moveBack:MOVE_BACK NUMB;
+rotLeft:ROT_L NUMB;
+rotRight:ROT_R NUMB;
+setColor: SET_COLOR colorParam;
+
+colorParam:NUMB COMMA NUMB COMMA NUMB COMMA NUMB;
+
 
 start
 :
 	'hello' 'world' 
 ;
+
+MOVE_FORW:'move_forw';
+MOVE_BACK:'move_back';
+ROT_L:'rot_l';
+ROT_R:'rot_r';
+SET_COLOR:'set_color';
 
 WS:	[ \t\r\n]+ -> skip;
 LET:'let';
@@ -60,11 +75,7 @@ END_WHILE:'end_while';
 DEF:'def';
 END_DEF:'end_def';
 
-MOVE_FORW:'move_forw';
-MOVE_BACK:'move_back';
-ROT_L:'rot_l';
-ROT_R:'rot_r';
-SET_COLOR:'set_color';
+
 
 READ:'read';
 PRINTLN:'println';
